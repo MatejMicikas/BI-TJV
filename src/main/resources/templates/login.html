@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org">
+<head>
+    <title>Customers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+<div class="w3-container w3-margin">
+    <div class="w3-bar w3-red" th:replace="~{fragments/NavBar}">Menu Bar</div>
+    <p th:if="${param.error}">
+        <span class="w3-red">Invalid username and password</span>
+    </p>
+    <p th:if="${param.logout}">
+        You have been logged out.
+    </p>
+    <p>
+    <form class="w3-container" th:action="@{/login}" method="post">
+        <p>
+            <label> User Name : </label>
+            <input type="text" name="username"/>
+        </p>
+        <p>
+            <label> Password: </label>
+            <input type="password" name="password"/> </label>
+        </p>
+        <p>
+            <button class="w3-btn w3-gray" type="submit">Sign In</button>
+        </p>
+    </form>
+    </p>
+
+</div>
+</body>
+</html>

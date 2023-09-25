@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org">
+<head>
+    <title>Customers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        .btns {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            padding: .5rem 1rem;
+            width: 20vw;
+            border-radius: .3rem;
+            background-color: transparent;
+            font-size: 1.25rem;
+            line-height: 1.5;
+            cursor: pointer;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        #add-btn {
+            border: 1px solid #007bff;
+            border-color: #007bff;
+            color: #007bff;
+        }
+
+        #add-btn:hover {
+            color: #fff;
+            background-color: #007bff;
+        }
+
+        #find-btn {
+            border: 1px solid green;
+            border-color: green;
+            color: green;
+        }
+
+        #find-btn:hover {
+            color: #fff;
+            background-color: green;
+        }
+
+        .fa {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="w3-container w3-margin">
+    <div class="w3-bar w3-red" th:replace="~{fragments/NavBar}">Menu Bar</div>
+    <div class="w3-panel w3-pale-green">
+        <span class="w3-text" th:text="${message}">Message</span>
+    </div>
+    <h1><span th:text="#{customers}">Customers</span></h1>
+    <table class="w3-table w3-striped">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Receipts</th>
+            <th></th>
+        </tr>
+        <tr th:each="c: ${customers}">
+            <td th:text="${c.id}">33</td>
+            <td th:text="${c.name}">Tom</td>
+            <td>
+                <a th:href="${'receipts?custId='+c.id}">
+                    <button class="w3-btn">Show</button>
+                </a>
+            </td>
+            <td>
+                <form th:action="@{/customers/delete}" method="post">
+                    <input type="hidden" name="custId" th:value="${c.id}">
+                    <button class="w3-btn">Delete</button>
+                </form>
+            </td>
+            <td>
+                <a th:href="${'customers/change_name?custId='+c.id}">
+                    <button class="w3-btn">Change name</button>
+                </a>
+            </td>
+        </tr>
+    </table>
+    <p>
+        <button id="add-btn" class="btns"><a href="/customers/add">Add
+            Customer</a></button>
+    </p>
+    <p>
+    <div>
+        <button id="find-btn" class="btns"><i class="fa fa-search"></i><a href="/customers/find">Find
+            Customer</a></button>
+    </div>
+    </p>
+</div>
+</body>
+</html>

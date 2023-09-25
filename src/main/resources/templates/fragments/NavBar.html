@@ -1,0 +1,19 @@
+<nav class="w3-bar w3-red">
+    <a class="w3-bar-item" href="/">
+        <button class="w3-btn">Home</button>
+    </a>
+    <a class="w3-bar-item" href="/customers">
+        <button class="w3-btn">Customers</button>
+    </a>
+    <a class="w3-bar-item" href="/receipts">
+        <button class="w3-btn">Receipts</button>
+    </a>
+    <form class="w3-bar-item" th:action="@{/locale}" method="post">
+        <button class="w3-btn" name="locale" value="cz">CZ</button>
+        <button class="w3-btn" name="locale" value="us">US</button>
+    </form>
+    <form class="w3-bar-item" th:action="@{/logout}" sec:authorize="isAuthenticated()" method="post">
+        <button class="w3-btn">Sign Out</button>
+    </form>
+
+</nav>

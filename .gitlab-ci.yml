@@ -1,0 +1,16 @@
+#image: $CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX/openjdk:17
+image: $CI_REGISTRY/ict/images/alpine/base:latest
+#image: $CI_REGISTRY/bi-tjv/bik-tjv/bitjvjava17image
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+cache:
+  paths:
+    - .m2/repository
+stages:
+  - build
+build-job:
+  stage: build
+  before_script:
+    - apk add openjdk17
+  script:
+    - ./mvnw clean verify
